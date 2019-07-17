@@ -1,0 +1,19 @@
+{
+	"collection":"Condition",
+	"resource":"ICD10",
+	"tables":[
+		{
+			"name":"ICD10_entryId",
+			"fields":{
+				"source": {
+					"static":true,
+					"value":"DB"
+				},
+				"identifier": {
+					"static":false,
+					"value":"id"
+				}
+			}
+		}
+	]
+}
