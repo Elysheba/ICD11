@@ -190,6 +190,7 @@ getAncestors <- function(id){
 ###########################
 ## Get parent info
 parentId <- readChapters(icd10)
+parentId$origin <- "ICD10"
 
 ## level info
 parentList <- group_split(parentId , id)
@@ -209,14 +210,19 @@ names(termAncestors) <- parentId$id
 
 ICD10_parentId <- parentId %>%
   mutate(pDB = "ICD10",
-         DB = "ICD10")
+         DB = "ICD10") %>%
+  select(pDB, parent, DB, id, origin)
 
 ICD10_entryId <- ICD10_entryId %>%
   mutate(
     level=unlist(lapply(termAncestors, function(x) x$level))[ICD10_entryId$id]
   ) %>%
   mutate(level = case_when(is.na(level) ~ 0,
-                           TRUE ~ level)) 
+                           TRUE ~ level)) %>%
+  select(DB, id, def, level)
+
+ICD10_idNames <- ICD10_idNames %>%
+  select(DB, id, syn, canonical)
 
 ############################
 toSave <- grep("^ICD10[_]", ls(), value=T)

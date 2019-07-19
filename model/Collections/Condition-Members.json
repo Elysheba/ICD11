@@ -6,7 +6,7 @@
 			"name":"ICD10_entryId",
 			"fields":{
 				"source": {
-					"static":true,
+					"static":false,
 					"value":"DB"
 				},
 				"identifier": {

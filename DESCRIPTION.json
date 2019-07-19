@@ -1,7 +1,7 @@
 {
-	"name": "ICD10",
+	"name": "ICD11",
 	"title": "International Classification of Diseases 11th Revision.",
-	"description": "Mapping ICD10 to ICD11 disease identifiers - The global standard for diagnostic health information",
+	"description": "International Classification of Diseases 11th Revision providing information and mapping of ICD10 to ICD11 disease identifiers - The global standard for diagnostic health information",
 	"reference URL": "https://icd.who.int/browse11/l-m/en",
 	"version": "0.1",
 	"source files": [
