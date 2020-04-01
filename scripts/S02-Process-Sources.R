@@ -11,17 +11,24 @@ library(tibble)
 library(tidyr)
 library(stringr)
 library(readxl)
-
+library(ReDaMoR)
+library(here)
 ##
 mc.cores <- 55
 sdir <- "./sources"
 ddir <- "./data"
-source(here("..","00-Utils/writeLastUpdate.R"))
+# source(here("..","00-Utils/writeLastUpdate.R"))
+
+###############################################################################@
+## Data model ----
+###############################################################################@
+load(here("model", "ICD11.rda"))
+dm <- model_relational_data(dm)
+save(dm, file = here("model", "ICD11.rda"))
 
 ###############################################################################@
 ## Source information ----
 ###############################################################################@
-
 desc <- RJSONIO::readJSONStream("./DESCRIPTION.json")
 
 sourceFiles <- desc$"source files"
@@ -223,6 +230,11 @@ ICD10_entryId <- ICD10_entryId %>%
 
 ICD10_idNames <- ICD10_idNames %>%
   select(DB, id, syn, canonical)
+
+ICD10_parentId <- ICD10_parentId %>%
+  select(DB, id, pDB, parent, origin)
+
+
 
 ############################
 toSave <- grep("^ICD10[_]", ls(), value=T)

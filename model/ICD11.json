@@ -1,0 +1,231 @@
+{
+  "ICD10_entryId": {
+    "tableName": ["ICD10_entryId"],
+    "fields": [
+      {
+        "name": "DB",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Name original database/ontology"
+      },
+      {
+        "name": "id",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Disease ontology identifier from EFO"
+      },
+      {
+        "name": "def",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": ""
+      },
+      {
+        "name": "level",
+        "type": "integer",
+        "nullable": false,
+        "unique": false,
+        "comment": ""
+      }
+    ],
+    "primaryKey": ["DB", "id"],
+    "foreignKeys": {},
+    "indexes": [
+      {
+        "fields": ["DB", "id"],
+        "unique": [true]
+      }
+    ],
+    "display": {
+      "x": [-169],
+      "y": [-88],
+      "color": ["NA"],
+      "comment": ["NA"]
+    }
+  },
+  "ICD10_parentId": {
+    "tableName": ["ICD10_parentId"],
+    "fields": [
+      {
+        "name": "DB",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Database for id"
+      },
+      {
+        "name": "id",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Disease ontology identifier from EFO"
+      },
+      {
+        "name": "pDB",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Name database for parent id"
+      },
+      {
+        "name": "parent",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Parent ontology for id in EFO"
+      },
+      {
+        "name": "origin",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": ""
+      }
+    ],
+    "primaryKey": [],
+    "foreignKeys": [
+      {
+        "refTable": ["ICD10_entryId"],
+        "key": [
+          {
+            "from": "DB",
+            "to": "DB"
+          },
+          {
+            "from": "id",
+            "to": "id"
+          }
+        ],
+        "cardinality": [0, -1, 1, 1]
+      },
+      {
+        "refTable": ["ICD10_entryId"],
+        "key": [
+          {
+            "from": "pDB",
+            "to": "DB"
+          },
+          {
+            "from": "parent",
+            "to": "id"
+          }
+        ],
+        "cardinality": [0, -1, 1, 1]
+      }
+    ],
+    "indexes": [
+      {
+        "fields": ["parent", "pDB"],
+        "unique": [false]
+      },
+      {
+        "fields": ["DB", "id"],
+        "unique": [false]
+      }
+    ],
+    "display": {
+      "x": [45],
+      "y": [-180],
+      "color": ["NA"],
+      "comment": ["NA"]
+    }
+  },
+  "ICD10_idNames": {
+    "tableName": ["ICD10_idNames"],
+    "fields": [
+      {
+        "name": "DB",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Name original database"
+      },
+      {
+        "name": "id",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Disease ontology identifier from EFO"
+      },
+      {
+        "name": "syn",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": "Term (synonym or label) to describe the disease"
+      },
+      {
+        "name": "canonical",
+        "type": "logical",
+        "nullable": false,
+        "unique": false,
+        "comment": "Current label for the entry"
+      }
+    ],
+    "primaryKey": [],
+    "foreignKeys": [
+      {
+        "refTable": ["ICD10_entryId"],
+        "key": [
+          {
+            "from": "DB",
+            "to": "DB"
+          },
+          {
+            "from": "id",
+            "to": "id"
+          }
+        ],
+        "cardinality": [0, -1, 1, 1]
+      }
+    ],
+    "indexes": [
+      {
+        "fields": ["DB", "id"],
+        "unique": [false]
+      }
+    ],
+    "display": {
+      "x": [-180],
+      "y": [69],
+      "color": ["NA"],
+      "comment": ["NA"]
+    }
+  },
+  "ICD10_sourceFiles": {
+    "tableName": ["ICD10_sourceFiles"],
+    "fields": [
+      {
+        "name": "url",
+        "type": "character",
+        "nullable": false,
+        "unique": true,
+        "comment": ""
+      },
+      {
+        "name": "current",
+        "type": "character",
+        "nullable": false,
+        "unique": false,
+        "comment": ""
+      }
+    ],
+    "primaryKey": [],
+    "foreignKeys": {},
+    "indexes": [
+      {
+        "fields": ["url"],
+        "unique": [true]
+      }
+    ],
+    "display": {
+      "x": [99],
+      "y": [-7],
+      "color": ["NA"],
+      "comment": ["NA"]
+    }
+  }
+}

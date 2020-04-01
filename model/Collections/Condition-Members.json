@@ -1,6 +1,6 @@
 {
 	"collection":"Condition",
-	"resource":"ICD10",
+	"resource":"ICD11",
 	"tables":[
 		{
 			"name":"ICD10_entryId",
