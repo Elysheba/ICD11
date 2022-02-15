@@ -2,7 +2,7 @@ library(RJSONIO)
 library(here)
 source("../00-Utils/downloadSourceFiles.R")
 
-desc <- readJSONStream("../DESCRIPTION.json")
+desc <- readJSONStream(here("DESCRIPTION.json"))
 
 sourceFiles <- desc$"source files"
 urls <- unlist(lapply(
@@ -13,6 +13,6 @@ urls <- unlist(lapply(
       return(toRet)
    }
 ))
-srcDir <- "../sources"
+srcDir <- here("sources")
 
 downloadSourceFiles(urls, srcDir)

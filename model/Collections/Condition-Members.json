@@ -1,10 +1,16 @@
 {
+	"$schema":"TKCat_Condition_collection_1.0",
+	"$id":"ICD11_conditions_1.0",
 	"collection":"Condition",
 	"resource":"ICD11",
 	"tables":[
 		{
 			"name":"ICD10_entryId",
 			"fields":{
+				"condition": {
+					"static":true,
+					"value":"Disease"
+				},
 				"source": {
 					"static":false,
 					"value":"DB"

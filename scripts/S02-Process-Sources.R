@@ -15,21 +15,21 @@ library(ReDaMoR)
 library(here)
 ##
 mc.cores <- 55
-sdir <- "./sources"
-ddir <- "./data"
+sdir <- here("sources")
+ddir <- here("data")
 # source(here("..","00-Utils/writeLastUpdate.R"))
 
 ###############################################################################@
 ## Data model ----
 ###############################################################################@
 load(here("model", "ICD11.rda"))
-dm <- model_relational_data(dm)
-save(dm, file = here("model", "ICD11.rda"))
+# dm <- model_relational_data()
+# save(dm, file = here("model", "ICD11.rda"))
 
 ###############################################################################@
 ## Source information ----
 ###############################################################################@
-desc <- RJSONIO::readJSONStream("./DESCRIPTION.json")
+desc <- RJSONIO::readJSONStream(here("DESCRIPTION.json"))
 
 sourceFiles <- desc$"source files"
 sfi_name <- unlist(lapply(
@@ -57,7 +57,7 @@ ICD10_sourceFiles <- sfi[which(sfi$inUse), c("url", "current")]
 unzip(zipfile = here("sources/mapping.zip"), 
       exdir = here("sources"))
 ## Read table
-icd10 <- read_xlsx("./sources/10To11MapToOneCategory.xlsx") %>%
+icd10 <- read_xlsx(here("sources/10To11MapToOneCategory.xlsx")) %>%
   select("10ClassKind",
          "10DepthInKind",
          icd10Code,
@@ -256,8 +256,8 @@ for(f in toSave){
     qmethod = "double"
   )
 }
-writeLastUpdate()
+# writeLastUpdate()
 
 ##############################################################
 ## Check model
-source("../00-Utils/autoCheckModel.R")
+# source("../00-Utils/autoCheckModel.R")
